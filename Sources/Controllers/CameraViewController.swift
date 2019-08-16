@@ -31,6 +31,11 @@ public final class CameraViewController: UIViewController {
 
   /// Animated focus view.
   public lazy var focusView: UIView = self.makeFocusView()
+  public lazy var focusViewSize: CGSize = (
+    barCodeFocusViewType == .oneDimension
+    ? CGSize(width: 280, height: 80)
+    : CGSize(width: 218, height: 150)
+  )
   /// Button to change torch mode.
   public lazy var flashButton: UIButton = .init(type: .custom)
   /// Button that opens settings to allow camera usage.
@@ -352,18 +357,14 @@ private extension CameraViewController {
       focusView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
     )
 
-    let focusViewSize = barCodeFocusViewType == .oneDimension
-      ? CGSize(width: 280, height: 80)
-      : CGSize(width: 218, height: 150)
-
     regularFocusViewConstraints = [
-      focusView.widthAnchor.constraint(equalToConstant: focusViewSize.width),
-      focusView.heightAnchor.constraint(equalToConstant: focusViewSize.height)
+      focusView.widthAnchor.constraint(equalToConstant: self.focusViewSize.width),
+      focusView.heightAnchor.constraint(equalToConstant: self.focusViewSize.height)
     ]
 
     animatedFocusViewConstraints = [
-      focusView.widthAnchor.constraint(equalToConstant: 280),
-      focusView.heightAnchor.constraint(equalToConstant: 80)
+      focusView.widthAnchor.constraint(equalToConstant: self.focusViewSize.height),
+      focusView.heightAnchor.constraint(equalToConstant: self.focusViewSize.width)
     ]
 
     NSLayoutConstraint.activate(regularFocusViewConstraints)
