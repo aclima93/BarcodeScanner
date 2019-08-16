@@ -13,11 +13,11 @@ public final class HeaderViewController: UIViewController {
   // MARK: - UI properties
 
   /// Header view with title label and close button.
-  public private(set) lazy var navigationBar: UINavigationBar = self.makeNavigationBar()
+  public lazy var navigationBar: UINavigationBar = self.makeNavigationBar()
   /// Title view of the navigation bar.
-  public private(set) lazy var titleLabel: UILabel = self.makeTitleLabel()
+  public lazy var titleLabel: UILabel = self.makeTitleLabel()
   /// Left bar button item of the navigation bar.
-  public private(set) lazy var closeButton: UIButton = self.makeCloseButton()
+  public lazy var closeButton: UIButton = self.makeCloseButton()
 
   // MARK: - View lifecycle
 

@@ -12,18 +12,18 @@ public final class MessageViewController: UIViewController {
   // MARK: - UI properties
 
   /// Text label.
-  public private(set) lazy var textLabel: UILabel = self.makeTextLabel()
+  public lazy var textLabel: UILabel = self.makeTextLabel()
   /// Info image view.
-  public private(set) lazy var imageView: UIImageView = self.makeImageView()
+  public lazy var imageView: UIImageView = self.makeImageView()
   /// Border view.
-  public private(set) lazy var borderView: UIView = self.makeBorderView()
+  public lazy var borderView: UIView = self.makeBorderView()
 
   /// Blur effect view.
-  private lazy var blurView: UIVisualEffectView = .init(effect: UIBlurEffect(style: .extraLight))
+  public lazy var blurView: UIVisualEffectView = .init(effect: UIBlurEffect(style: .extraLight))
   // Constraints that are activated when the view is used as a footer.
-  private lazy var collapsedConstraints: [NSLayoutConstraint] = self.makeCollapsedConstraints()
+  public lazy var collapsedConstraints: [NSLayoutConstraint] = self.makeCollapsedConstraints()
   // Constraints that are activated when the view is used for loading animation and error messages.
-  private lazy var expandedConstraints: [NSLayoutConstraint] = self.makeExpandedConstraints()
+  public lazy var expandedConstraints: [NSLayoutConstraint] = self.makeExpandedConstraints()
 
   var status = Status(state: .scanning) {
     didSet {

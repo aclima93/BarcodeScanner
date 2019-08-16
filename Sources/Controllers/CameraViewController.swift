@@ -30,32 +30,32 @@ public final class CameraViewController: UIViewController {
   // MARK: - UI proterties
 
   /// Animated focus view.
-  public private(set) lazy var focusView: UIView = self.makeFocusView()
+  public lazy var focusView: UIView = self.makeFocusView()
   /// Button to change torch mode.
-  public private(set) lazy var flashButton: UIButton = .init(type: .custom)
+  public lazy var flashButton: UIButton = .init(type: .custom)
   /// Button that opens settings to allow camera usage.
-  public private(set) lazy var settingsButton: UIButton = self.makeSettingsButton()
+  public lazy var settingsButton: UIButton = self.makeSettingsButton()
   // Button to switch between front and back camera.
-  public private(set) lazy var cameraButton: UIButton = self.makeCameraButton()
+  public lazy var cameraButton: UIButton = self.makeCameraButton()
 
   // Constraints for the focus view when it gets smaller in size.
-  private var regularFocusViewConstraints = [NSLayoutConstraint]()
+  public var regularFocusViewConstraints = [NSLayoutConstraint]()
   // Constraints for the focus view when it gets bigger in size.
-  private var animatedFocusViewConstraints = [NSLayoutConstraint]()
+  public var animatedFocusViewConstraints = [NSLayoutConstraint]()
 
   // MARK: - Video
 
   /// Video preview layer.
-  private var videoPreviewLayer: AVCaptureVideoPreviewLayer?
+  public var videoPreviewLayer: AVCaptureVideoPreviewLayer?
   /// Video capture device. This may be nil when running in Simulator.
-  private var captureDevice: AVCaptureDevice?
+  public var captureDevice: AVCaptureDevice?
   /// Capture session.
-  private lazy var captureSession: AVCaptureSession = AVCaptureSession()
+  public lazy var captureSession: AVCaptureSession = AVCaptureSession()
   // Service used to check authorization status of the capture device
   private let permissionService = VideoPermissionService()
 
   /// The current torch mode on the capture device.
-  private var torchMode: TorchMode = .off {
+  public var torchMode: TorchMode = .off {
     didSet {
       guard let captureDevice = captureDevice, captureDevice.hasFlash else { return }
       guard captureDevice.isTorchModeSupported(torchMode.captureTorchMode) else { return }
@@ -70,11 +70,11 @@ public final class CameraViewController: UIViewController {
     }
   }
 
-  private var frontCameraDevice: AVCaptureDevice? {
+  public var frontCameraDevice: AVCaptureDevice? {
     return AVCaptureDevice.devices(for: .video).first(where: { $0.position == .front })
   }
 
-  private var backCameraDevice: AVCaptureDevice? {
+  public var backCameraDevice: AVCaptureDevice? {
     return AVCaptureDevice.default(for: .video)
   }
 
